@@ -15,18 +15,18 @@ async function getCharacters() {
 
 console.log(characterArray)
 
-// console.log(urlArray)
 
-//Render PokeCards
+
+//Render HP Characters
 
 function renderCharacter(characters) {
             const character = document.querySelector('#cards')
             character.innerHTML = character.innerHTML + `
         <li>
             <div class="character-card">
-                <img src=${characters.image} >
-                <h4>${characters.name}</h4>
-                <h4>${characters.house}</h4>
+                <img class="character-images" src=${characters.image} >
+                <h4 class="character-names">${characters.name}</h4>
+                <h4 class="character-houses">${characters.house}</h4>
                 <div id="vote-btns">
                     <button class="like-btn"> Like </button>
                     <button class="dislike-btn"> Dislike </button>
@@ -51,19 +51,16 @@ render()
 
 
 
-// // // Search Bar    
-// const searchBar = document.querySelector("#search-bar");
-// searchBar.addEventListener('keyup', (e) => {
-//     const input = e.target.value
-//     getAllPokemon()
-//         .then(results => {
-//             const filteredPokemon = results.filter(p => p.name.includes(input))
-//             filteredPokemon.forEach(pokemon => renderPokeCard(pokemon))
-//             console.log(filteredPokemon)
-//         })
-
-
-// })
+// Search Bar    
+const searchBar = document.querySelector("#search-bar");
+searchBar.addEventListener('keyup', (e) => {
+    const input = e.target.value
+    const filteredCharaters = characterArray.filter(character =>{
+       return character.name.includes(input)
+    })
+    console.log(filteredCharaters)
+    renderCharacter(filteredCharaters)
+})
 
 
 
