@@ -1,6 +1,5 @@
 /* Heading */
 h1 {
-    font-family: 'Pokemon Solid', sans-serif;
     text-align: center;
     font-size: 72px;
                                         
@@ -19,7 +18,7 @@ h1 {
 
 }
 
-.poke-card {
+.character-card {
     border: 1px solid black;
     width: 10vw;
     list-style: none;

@@ -1,75 +1,75 @@
-const pokemon = fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-
 // Creat PokeArray
 
-const pokeArray = []
+const characterArray = []
 
-//fetch request
-fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-        .then(res => res.json())
-        .then(({ results }) => {
-            results.forEach(value => pokeArray.push(value))
-        })
 
-console.log(pokeArray)
+//Async fetch request
+async function getCharacters() {
+    await fetch('https://hp-api.onrender.com/api/characters')
+    .then (res => res.json())
+    .then (data =>
+    data.forEach(value => characterArray.push(value))
+)}
+
+// Call fetch Function
+
+console.log(characterArray)
+
+// console.log(urlArray)
 
 //Render PokeCards
-function renderPokeCard() {
-    //Build pokecards
-    pokeArray.forEach(pokemon => {
-            const pokeCards = document.querySelector('#cards')
-            pokeCards.innerHTML = pokeCards.innerHTML + `
+
+function renderCharacter(characters) {
+            const character = document.querySelector('#cards')
+            character.innerHTML = character.innerHTML + `
         <li>
-            <div class="poke-card">
-                <h4>${pokemon.name}</h4>
-                <img src= ${pokemon.sprites.front_default}>
+            <div class="character-card">
+                <img src=${characters.image} >
+                <h4>${characters.name}</h4>
+                <h4>${characters.house}</h4>
                 <div id="vote-btns">
                     <button class="like-btn"> Like </button>
                     <button class="dislike-btn"> Dislike </button>
                 </div>   
             </div>    
         </li>`
-        })
+        }
+
+
+
+
+async function render() {
+    await getCharacters()
+    characterArray.forEach(characters => renderCharacter(characters))
 }
 
+render()
 
 
 
 
-//render pokemon 
-
-function render() {
-    pokeArray.forEach(pokemon => renderPokeCard(pokemon))
-}
-
-//Initial Render
-
-function initialize() {
-    render()
-}
-
-initialize()
-
-
-// // Search Bar    
-const searchBar = document.querySelector("#search-bar");
-searchBar.addEventListener('keyup', (e) => {
-    const input = e.target.value
-    getAllPokemon()
-        .then(results => {
-            const filteredPokemon = results.filter(p => p.name.includes(input))
-            filteredPokemon.forEach(pokemon => renderPokeCard(pokemon))
-            console.log(filteredPokemon)
-        })
-
-
-})
 
 
 
-// Create array to store likes
+// // // Search Bar    
+// const searchBar = document.querySelector("#search-bar");
+// searchBar.addEventListener('keyup', (e) => {
+//     const input = e.target.value
+//     getAllPokemon()
+//         .then(results => {
+//             const filteredPokemon = results.filter(p => p.name.includes(input))
+//             filteredPokemon.forEach(pokemon => renderPokeCard(pokemon))
+//             console.log(filteredPokemon)
+//         })
 
-const likes = []
+
+// })
+
+
+
+// // Create array to store likes
+
+// const likes = []
 
 // // //Create like and dislike buttons
 
