@@ -35,7 +35,7 @@ const displayCharacters = (characters) => {
                 <img class="character-images" src="${character.image}"></img>
                 <div id="vote-btns">
                      <button class="like-btn"> Like </button>
-                    <button class="dislike-btn"> Dislike </button>
+                     <button class="dislike-btn"> Dislike </button>
                 </div>
             </div>   
             </li>
@@ -43,20 +43,30 @@ const displayCharacters = (characters) => {
         })
         .join('');
     charactersList.innerHTML = htmlString;
+
+//Like Button Event Listener
+
+const likeButton = document.querySelectorAll('.like-btn')
+likeButton.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        const likeCard = event.target.parentElement.parentElement;
+        console.log(likeCard)
+        likeCard.setAttribute("id", "favourite")
+    })
+})
+
+//Dislike Button Event Listener
+
+const dislikeButton = document.querySelectorAll('.dislike-btn')
+dislikeButton.forEach((button) => {
+    button.addEventListener('click', (event) => {
+        const hateCard = event.target.parentElement.parentElement;
+        console.log(hateCard)
+        hateCard.setAttribute("id", "hated")
+    })
+})
 };
 
 loadCharacters();
 
-//Like Button Event Listener
 
-const likeButton = document.getElementsByClassName('like-btn')
-console.log(likeButton)
-for (button of likeButton) {
-    button.addEventListener('click', event => {
-        const favoriteCharacter = event.target.parentNode;
-        console.log(favoriteCharacter)
-    })
-}
-
-
-// Dislike Button Event Listener

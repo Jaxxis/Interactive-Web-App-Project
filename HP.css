@@ -36,3 +36,13 @@ h1 {
 #vote-btns {
     margin: 15px 0px 0px 0px;
 }
+
+#favourite {
+    background-color: blue;
+
+}
+
+#hated {
+    background-color: red;
+
+}
